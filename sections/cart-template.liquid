@@ -27,7 +27,7 @@
                 {%- for item in cart.items -%}
                   {%- if item.properties['Name'] == blank -%}
                     <li class="line-item" data-normal-item data-normal-item-key={{ item.key }} data-line-item-id="{{ item.id }}" data-normal-item-qty="{{ item.quantity }}">
-                      {%- render 'line-item-normal' with item: item -%}
+                      {%- render 'line-item-normal' with item, item: item -%}
                     </li>
                   {%- else -%}
                     {%- assign properties = properties | append: item.properties['Name'] | append: ',' -%}
@@ -39,7 +39,7 @@
                 <ul class="candy-outer-list">
                   {%- for prop in new_properties -%}
                     <li class="line-item" data-candybag-item data-candybag-item-id="{{ prop }}">
-                      {%- render 'line-item-candy' with prop: prop, image: s.candy_bag_image -%}
+                      {%- render 'line-item-candy' with prop, prop: prop, image: s.candy_bag_image -%}
                     </li>
                   {%- endfor -%}
                 </ul>
@@ -195,4 +195,17 @@
       }
     ]
   }
-{% endschema %}
+{% endschema %}{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'line-item-normal' with item: item -%}"
+  to: "{%- render 'line-item-normal' with item, item: item -%}"
+  position: 1541..1596
+- from: "{%- render 'line-item-candy' with prop: prop, image: s.candy_bag_image -%}"
+  to: "{%- render 'line-item-candy' with prop, prop: prop, image: s.candy_bag_image
+    -%}"
+  position: 2123..2203
+{%- endcomment -%}

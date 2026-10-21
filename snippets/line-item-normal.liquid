@@ -16,11 +16,22 @@
         <div class="flex items-center justify-center w-8 h-8 bg-opacityPurple text-purple rounded-md font-bold cursor-pointer" data-normal-item-qty-plus>+</div>
       </div>
 
-      {%- render 'line-item-remove-button' with data: 'remove-normal', id: item.id -%}
+      {%- render 'line-item-remove-button' with data, data: 'remove-normal', id: item.id -%}
     </div>
   </div>
 
   <div class="price flex flex-col justify-center mt-14">
     <p class="whitespace-nowrap" data-normal-item-price>{{ item.final_line_price | money }}</p>
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'line-item-remove-button' with data: 'remove-normal', id: item.id
+    -%}"
+  to: "{%- render 'line-item-remove-button' with data, data: 'remove-normal', id:
+    item.id -%}"
+  position: 1063..1149
+{%- endcomment -%}

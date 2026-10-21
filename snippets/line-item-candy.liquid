@@ -38,11 +38,22 @@
         </ul>
       </div>
 
-      {%- render 'line-item-remove-button' with data: 'remove-candy', id: prop -%}
+      {%- render 'line-item-remove-button' with data, data: 'remove-candy', id: prop -%}
     </div>
   </div>
 
   <div class="price flex flex-col justify-center mt-14">
     <p class="whitespace-nowrap" data-total-line-price></p>
   </div>
-</div>
+</div>{%- comment -%}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: "{%- render 'line-item-remove-button' with data: 'remove-candy', id: prop
+    -%}"
+  to: "{%- render 'line-item-remove-button' with data, data: 'remove-candy', id: prop
+    -%}"
+  position: 2469..2551
+{%- endcomment -%}

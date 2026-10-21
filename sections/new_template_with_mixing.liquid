@@ -155,11 +155,7 @@
       {%- endif -%}
  {% endcomment %}
       <div class="w-full md:w-3/4 py-6 md:py-0 mb-6" data-component="product">
-        {%- render 'product-form-new',
-          section_id: {{section.id}},
-          product: product,
-          current_variant: current_variant
-        -%}
+        {%- render 'product-form-new', section_id: section.id, product: product, current_variant: current_variant -%}
       </div>
    
     <div class="collapsible">
@@ -261,3 +257,19 @@
   ]
 }
 {% endschema %}
+{% comment %}
+
+This file has been rewritten to preserve the original behavior.
+
+---
+Changes:
+- from: |-
+    {%- render 'product-form-new',
+              section_id: {{section.id}},
+              product: product,
+              current_variant: current_variant
+            -%}
+  to: "{%- render 'product-form-new', section_id: section.id, product: product, current_variant:
+    current_variant -%}"
+  position: 4553..4662
+{% endcomment %}
